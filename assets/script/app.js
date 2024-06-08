@@ -105,10 +105,10 @@ function crearFila(operacion, indice){
     let columnaMonto = document.createElement('td');
     columnaMonto.style.textAlign = 'center';
     if(operacion.tipo == 'gasto'){
-        columnaMonto.textContent = '-$ ' +  operacion.monto;
+        columnaMonto.textContent = '-₽ ' +  operacion.monto;
         columnaMonto.style.color = 'red';
     } else {
-        columnaMonto.textContent = '+$ ' +  operacion.monto;
+        columnaMonto.textContent = '+₽ ' +  operacion.monto;
         columnaMonto.style.color = '#86ec10';
     }
     fila.appendChild(columnaMonto);
@@ -338,22 +338,22 @@ function gananciaGasto(){
 
     let arrayGanancia = operaciones_array.filter((op)=>op.tipo == "ganancia");
     let sumaGanancia = arrayGanancia.reduce((a, b) => parseFloat(a) + parseFloat(b.monto), 0);
-    balanceGanancias.textContent = '+$ '+ sumaGanancia;
+    balanceGanancias.textContent = '+₽ '+ sumaGanancia;
     balanceGanancias.style.color = '#86ec10';
 
     let arrayGastos = operaciones_array.filter((op)=>op.tipo == "gasto");
     let sumaGastos = arrayGastos.reduce((a, b) => parseFloat(a) + parseFloat(b.monto), 0);
-    balanceGastos.textContent = '-$ '+ sumaGastos;
+    balanceGastos.textContent = '-₽ '+ sumaGastos;
     balanceGastos.style.color = 'red';
 
     total = sumaGanancia - sumaGastos;
 
     if (total > 0){
-        balanceTotalGananciasGastos.textContent = '+$' + total;
+        balanceTotalGananciasGastos.textContent = '+₽' + total;
         balanceTotalGananciasGastos.style.color = '#86ec10';
     } 
     else{
-        balanceTotalGananciasGastos.textContent = '$' + total;
+        balanceTotalGananciasGastos.textContent = '₽' + total;
         balanceTotalGananciasGastos.style.color = 'red';
     }
 };

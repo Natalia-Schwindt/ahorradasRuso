@@ -37,11 +37,11 @@ function mostrarReportes(operaciones) {
     tablaResumen.innerHTML = '';
 
     const resumenDatos = [
-        { descripcion: 'Категория с наибольшим выигрышем', nombre: reportes.categoriaMayorGanancia.nombre, valor: `+$${reportes.categoriaMayorGanancia.monto.toFixed(2)}` },
-        { descripcion: 'Категория с наибольшим расходами', nombre: reportes.categoriaMayorGasto.nombre, valor: `-$${reportes.categoriaMayorGasto.monto.toFixed(2)}` },
-        { descripcion: 'Категория с наибольшим балансом', nombre: reportes.categoriaMayorBalance.nombre, valor: `+$${reportes.categoriaMayorBalance.monto.toFixed(2)}` },
-        { descripcion: 'Месяц с наибольшей прибылью', nombre: reportes.mesMayorGanancia.nombre, valor: `+$${reportes.mesMayorGanancia.monto.toFixed(2)}` },
-        { descripcion: 'Месяц с наибольшими расходами', nombre: reportes.mesMayorGasto.nombre, valor: `-$${reportes.mesMayorGasto.monto.toFixed(2)}` },
+        { descripcion: 'Категория с наибольшим выигрышем', nombre: reportes.categoriaMayorGanancia.nombre, valor: `+₽${reportes.categoriaMayorGanancia.monto.toFixed(2)}` },
+        { descripcion: 'Категория с наибольшим расходами', nombre: reportes.categoriaMayorGasto.nombre, valor: `-₽${reportes.categoriaMayorGasto.monto.toFixed(2)}` },
+        { descripcion: 'Категория с наибольшим балансом', nombre: reportes.categoriaMayorBalance.nombre, valor: `+₽${reportes.categoriaMayorBalance.monto.toFixed(2)}` },
+        { descripcion: 'Месяц с наибольшей прибылью', nombre: reportes.mesMayorGanancia.nombre, valor: `+₽${reportes.mesMayorGanancia.monto.toFixed(2)}` },
+        { descripcion: 'Месяц с наибольшими расходами', nombre: reportes.mesMayorGasto.nombre, valor: `-₽${reportes.mesMayorGasto.monto.toFixed(2)}` },
     ];
 
     resumenDatos.forEach(item => {
@@ -67,9 +67,9 @@ function mostrarReportes(operaciones) {
         let fila = document.createElement('tr');
         fila.innerHTML = `
             <td class="border px-4 py-2 border-none text-center">${categoria}</td>
-            <td class="border px-4 py-2 border-none text-center">+$${ganancia.toFixed(2)}</td>
-            <td class="border px-4 py-2 border-none text-center">-$${gasto.toFixed(2)}</td>
-            <td class="border px-4 py-2 border-none text-center">${balance >= 0 ? '+' : ''}$${balance.toFixed(2)}</td>
+            <td class="border px-4 py-2 border-none text-center">+₽${ganancia.toFixed(2)}</td>
+            <td class="border px-4 py-2 border-none text-center">-₽${gasto.toFixed(2)}</td>
+            <td class="border px-4 py-2 border-none text-center">${balance >= 0 ? '+' : ''}₽${balance.toFixed(2)}</td>
         `;
         tablaCategorias.appendChild(fila);
     }
@@ -83,9 +83,9 @@ function mostrarReportes(operaciones) {
         let fila = document.createElement('tr');
         fila.innerHTML = `
             <td class="border px-4 py-2 border-none text-center">${mes}</td>
-            <td class="border px-4 py-2 border-none text-center">+$${ganancia.toFixed(2)}</td>
-            <td class="border px-4 py-2 border-none text-center">-$${gasto.toFixed(2)}</td>
-            <td class="border px-4 py-2 border-none text-center">${balance >= 0 ? '+' : ''}$${balance.toFixed(2)}</td>
+            <td class="border px-4 py-2 border-none text-center">+₽${ganancia.toFixed(2)}</td>
+            <td class="border px-4 py-2 border-none text-center">-₽${gasto.toFixed(2)}</td>
+            <td class="border px-4 py-2 border-none text-center">${balance >= 0 ? '+' : ''}₽${balance.toFixed(2)}</td>
         `;
         tablaMeses.appendChild(fila);
     }
