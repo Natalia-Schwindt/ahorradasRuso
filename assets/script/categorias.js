@@ -27,14 +27,14 @@ function crearFila(categoria, indice){
     categoriaElemP.style.color = 'white';
 
     let botonEditarCategoria = document.createElement('button');
-    botonEditarCategoria.textContent = 'Editar';
+    botonEditarCategoria.textContent = 'Издать';
     botonEditarCategoria.style.color = '#86ec10';
     botonEditarCategoria.style.paddingRight = '10px';
     botonEditarCategoria.dataset.indice = indice;
     botonEditarCategoria.onclick = editar_operacion;
 
     let botonEliminarCategoria = document.createElement('button');
-    botonEliminarCategoria.textContent = 'Eliminar';
+    botonEliminarCategoria.textContent = 'Удалить';
     botonEliminarCategoria.style.color = 'red';
     botonEliminarCategoria.dataset.indice = indice;
     botonEliminarCategoria.onclick = eliminar_operacion;
@@ -57,7 +57,7 @@ function cargarDatos(){
     // carga categorias
     categorias_storage = localStorage.getItem("categorias");
     if (!categorias_storage) {
-        categorias_array = ["Comida", "Servicios", "Salidas", "Educacion", "Transporte", "Trabajo"];
+        categorias_array = ["Еда", "Услуги", "Расходы", "Министерство образования", "Транспорт", "Работа"];
         localStorage.setItem("categorias", categorias_array);
     } else {
         categorias_array = categorias_storage.split(',');

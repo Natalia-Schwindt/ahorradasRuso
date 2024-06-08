@@ -37,11 +37,11 @@ function mostrarReportes(operaciones) {
     tablaResumen.innerHTML = '';
 
     const resumenDatos = [
-        { descripcion: 'Categoría con mayor ganancia', nombre: reportes.categoriaMayorGanancia.nombre, valor: `+$${reportes.categoriaMayorGanancia.monto.toFixed(2)}` },
-        { descripcion: 'Categoría con mayor gasto', nombre: reportes.categoriaMayorGasto.nombre, valor: `-$${reportes.categoriaMayorGasto.monto.toFixed(2)}` },
-        { descripcion: 'Categoría con mayor balance', nombre: reportes.categoriaMayorBalance.nombre, valor: `+$${reportes.categoriaMayorBalance.monto.toFixed(2)}` },
-        { descripcion: 'Mes con mayor ganancia', nombre: reportes.mesMayorGanancia.nombre, valor: `+$${reportes.mesMayorGanancia.monto.toFixed(2)}` },
-        { descripcion: 'Mes con mayor gasto', nombre: reportes.mesMayorGasto.nombre, valor: `-$${reportes.mesMayorGasto.monto.toFixed(2)}` },
+        { descripcion: 'Категория с наибольшим выигрышем', nombre: reportes.categoriaMayorGanancia.nombre, valor: `+$${reportes.categoriaMayorGanancia.monto.toFixed(2)}` },
+        { descripcion: 'Категория с наибольшим расходами', nombre: reportes.categoriaMayorGasto.nombre, valor: `-$${reportes.categoriaMayorGasto.monto.toFixed(2)}` },
+        { descripcion: 'Категория с наибольшим балансом', nombre: reportes.categoriaMayorBalance.nombre, valor: `+$${reportes.categoriaMayorBalance.monto.toFixed(2)}` },
+        { descripcion: 'Месяц с наибольшей прибылью', nombre: reportes.mesMayorGanancia.nombre, valor: `+$${reportes.mesMayorGanancia.monto.toFixed(2)}` },
+        { descripcion: 'Месяц с наибольшими расходами', nombre: reportes.mesMayorGasto.nombre, valor: `-$${reportes.mesMayorGasto.monto.toFixed(2)}` },
     ];
 
     resumenDatos.forEach(item => {
