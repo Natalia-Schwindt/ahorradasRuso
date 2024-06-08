@@ -358,6 +358,4 @@ function gananciaGasto(){
     }
 };
 
-
-
 cargarDatos();
