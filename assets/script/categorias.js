@@ -15,7 +15,7 @@ const nombreNuevaCategoria = document.getElementById('nombre-nueva-categoria');
 const botonAgregarNuevaCategoria = document.getElementById('boton-agregar-nueva-categoria');
 let listaNuevaCategoria = document.getElementById('lista-nueva-categoria');
 
-function crearFila(categoria, indice){
+const crearFila = (categoria, indice) => {
     let categoriaElemLi = document.createElement('li');
     categoriaElemLi.style.display = 'flex';
     categoriaElemLi.style.justifyContent = 'space-between';
@@ -46,19 +46,19 @@ function crearFila(categoria, indice){
 
 };
 
-function crearTabla(categorias){
+const crearTabla = (categorias) => {
     listaNuevaCategoria.innerHTML = '';
     categorias.forEach((categoria, indice) => {
         crearFila(categoria, indice);
     });
 };
 
-function cargarDatos(){
+const cargarDatos = () => {
     // carga categorias
-    categorias_storage = localStorage.getItem("categorias");
+    categorias_storage = localStorage.getItem('categorias');
     if (!categorias_storage) {
-        categorias_array = ["Еда", "Услуги", "Расходы", "Министерство образования", "Транспорт", "Работа"];
-        localStorage.setItem("categorias", categorias_array);
+        categorias_array = ['Еда', 'Услуги', 'Расходы', 'Министерство образования', 'Транспорт', 'Работа'];
+        localStorage.setItem('categorias', categorias_array);
     } else {
         categorias_array = categorias_storage.split(',');
     }
@@ -67,14 +67,14 @@ function cargarDatos(){
 };
 
 // Crea cada operacion del form de 'nueva operacion' de balance
-function crearOperacion() {
+const crearOperacion = () => {
     // Objeto con los valores de cada opcion del form de nuevaOperacion
     let nuevaCategoria = nombreNuevaCategoria.value.trim();
     if (nuevaCategoria) {
         nuevaCategoria = nuevaCategoria.charAt(0).toUpperCase() + nuevaCategoria.slice(1).toLowerCase();
         nombreNuevaCategoria.value = '';
         categorias_array.push(nuevaCategoria);
-        localStorage.setItem("categorias", categorias_array);
+        localStorage.setItem('categorias', categorias_array);
         crearTabla(categorias_array);
     }
 };
@@ -82,9 +82,9 @@ function crearOperacion() {
 const formularioEditarCategoria = document.getElementById('formulario-editar-categoria');
 const editarNombreNuevaCategoria = document.getElementById('editar-nombre-nueva-categoria');
 const editarCategoria = document.getElementById('editar-categoria');
-let indiceInputCategoria = document.getElementById("indice-input-categoria");
+let indiceInputCategoria = document.getElementById('indice-input-categoria');
 
-function editar_operacion(){
+const editar_operacion = () => {
     categorias.style.display = 'none';
     editarCategoria.style.display = 'block';
     indice = this.dataset.indice;
@@ -94,7 +94,7 @@ function editar_operacion(){
     editarNombreNuevaCategoria.value = categoria; //.descripcion 
 };
 
-formularioEditarCategoria.addEventListener("submit", function (event) {
+formularioEditarCategoria.addEventListener('submit', function (event) {
     console.log(event);
     event.preventDefault();
     event.stopImmediatePropagation();
@@ -103,32 +103,32 @@ formularioEditarCategoria.addEventListener("submit", function (event) {
     indice = indiceInputCategoria.value;
     categorias_array[indice] = editarNombreNuevaCategoria.value;
 
-    localStorage.setItem("categorias", categorias_array);
+    localStorage.setItem('categorias', categorias_array);
     categorias.style.display = 'block';
     editarCategoria.style.display = 'none';
     crearTabla(categorias_array);
 });
 
 // Eliminar categoria
-function eliminar_operacion(){
+const eliminar_operacion = () => {
     indice = this.dataset.indice;
     categoria = categorias_array[indice]
     categorias_array.splice(indice, 1);
-    localStorage.setItem("categorias", categorias_array);
+    localStorage.setItem('categorias', categorias_array);
 
-    operaciones_json = localStorage.getItem("operaciones");
+    operaciones_json = localStorage.getItem('operaciones');
     operaciones_array = JSON.parse(operaciones_json);
-    if (operaciones_array===null){
+    if (operaciones_array === null){
         operaciones_array=[];
     }
 
     operacionesFiltradas = operaciones_array.filter(op => op.categoria !== categoria);
-    localStorage.setItem("operaciones", JSON.stringify(operacionesFiltradas));
+    localStorage.setItem('operaciones', JSON.stringify(operacionesFiltradas));
 
     crearTabla(categorias_array);
 };
 
-document.querySelector('#formulario-categoria').addEventListener("submit", function (event) {
+document.querySelector('#formulario-categoria').addEventListener('submit', function (event) {
     console.log(event);
     event.preventDefault();
     event.stopImmediatePropagation();
