@@ -1,7 +1,7 @@
 const categoriasSelect = document.getElementById("categoria");
 let operaciones_array = [];
 
-function cargarCategorias(categorias) {
+const cargarCategorias = (categorias) => {
     categorias.forEach((categoria) => {
         let nuevaOperacionCategoria = document.getElementById('nuevaOperacion-categoria');
         let editarCategoria = document.getElementById('editar-categoria');
