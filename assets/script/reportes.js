@@ -11,7 +11,7 @@ const imagenReportes = document.getElementById('imagen-reportes');
 const totalesCategoria = document.getElementById('totales-categoria');
 const totalesMes = document.getElementById('totales-mes');
 
-const ocultarImgYTexto = () => {
+function ocultarImgYTexto() {
     for (let i = 0; i < ocultarImgTexto.length; i++) {
         ocultarImgTexto[i].classList.add('hidden');
     }
@@ -19,7 +19,7 @@ const ocultarImgYTexto = () => {
     reportesSection.classList.remove('hidden');
 }
 
-const mostrarReportes = (operaciones) => {
+function mostrarReportes(operaciones) {
     if (operaciones.length === 0) {
         reportesSection.classList.add('hidden');
         totalesCategoria.classList.add('hidden');
@@ -91,7 +91,7 @@ const mostrarReportes = (operaciones) => {
     }
 }
 
-const calcularReportes = (operaciones) => {
+function calcularReportes(operaciones) {
     let categorias = {};
     let meses = {};
 
@@ -156,8 +156,8 @@ const calcularReportes = (operaciones) => {
 }
 
 // Obtener las operaciones del localStorage y mostrar los reportes
-const cargarOperacionesYMostrarReportes = () => {
-    const operaciones_json = localStorage.getItem('operaciones');
+function cargarOperacionesYMostrarReportes() {
+    const operaciones_json = localStorage.getItem("operaciones");
     const operaciones_array = JSON.parse(operaciones_json) || [];
     if (operaciones_array.length > 0) {
         ocultarImgYTexto();

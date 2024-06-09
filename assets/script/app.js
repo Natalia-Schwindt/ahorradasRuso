@@ -1,24 +1,24 @@
-const categoriasSelect = document.getElementById('categoria');
+const categoriasSelect = document.getElementById("categoria");
 let operaciones_array = [];
 
-const cargarCategorias = (categorias) => {
+function cargarCategorias(categorias) {
     categorias.forEach((categoria) => {
         let nuevaOperacionCategoria = document.getElementById('nuevaOperacion-categoria');
         let editarCategoria = document.getElementById('editar-categoria');
-        let nuevaCategoria = document.createElement('option');
+        let nuevaCategoria = document.createElement("option");
         // select filtros
         nuevaCategoria.value = categoria;
         nuevaCategoria.textContent = categoria;
         categoriasSelect.appendChild(nuevaCategoria);
 
         // select form crear
-        nuevaCategoria = document.createElement('option');
+        nuevaCategoria = document.createElement("option");
         nuevaCategoria.value = categoria;
         nuevaCategoria.textContent = categoria;
         nuevaOperacionCategoria.appendChild(nuevaCategoria);
 
         // select form editar
-        nuevaCategoria = document.createElement('option');
+        nuevaCategoria = document.createElement("option");
         nuevaCategoria.value = categoria;
         nuevaCategoria.textContent = categoria;
         editarCategoria.appendChild(nuevaCategoria);
@@ -26,11 +26,11 @@ const cargarCategorias = (categorias) => {
 
 };
 
-const cargarStorage = () => {
-    categorias_storage = localStorage.getItem('categorias');
+function cargarStorage() {
+    categorias_storage = localStorage.getItem("categorias");
     if (!categorias_storage) {
-        categorias_array = ['Еда', 'Услуги', 'Расходы', 'Министерство образования', 'Транспорт', 'Работа'];
-        localStorage.setItem('categorias', categorias_array);
+        categorias_array = ["Еда", "Услуги", "Расходы", "Министерство образования", "Транспорт", "Работа"];
+        localStorage.setItem("categorias", categorias_array);
     } else {
         categorias_array = categorias_storage.split(',')
     }
@@ -66,60 +66,52 @@ nuevaOperacion.addEventListener('click', () => {
 
 /* Funciones para cargar y listar Nueva Operacion */
 const tableListadoBalance = document.getElementById('table-listado-balance');
-const descripcionNuevaOperacion = document.getElementById('nuevaOperacion-descripcion');
-const montoNuevaOperacion = document.getElementById('nuevaOperacion-monto');
-const tipoNuevaOperacion = document.getElementById('nuevaOperacion-tipo');
-const categoriaNuevaOperacion = document.getElementById('nuevaOperacion-categoria');
-const fechaNuevaOperacion = document.getElementById('nuevaOperacion-fecha');
+const descripcionNuevaOperacion = document.getElementById("nuevaOperacion-descripcion");
+const montoNuevaOperacion = document.getElementById("nuevaOperacion-monto");
+const tipoNuevaOperacion = document.getElementById("nuevaOperacion-tipo");
+const categoriaNuevaOperacion = document.getElementById("nuevaOperacion-categoria");
+const fechaNuevaOperacion = document.getElementById("nuevaOperacion-fecha");
 
-const cancelarOperacion = document.getElementById('cancelar-operacion');
+const cancelarOperacion = document.getElementById("cancelar-operacion");
 const figure = document.getElementById('figure');
 const imagenIndex = document.getElementById('imagen-index');
 const tituloParrafoOperaciones = document.getElementById('titulo-parrafo-operaciones');
 
 const seccionEditarOperacion = document.getElementById('seccion-editar-operacion');
 
-const capitalizeFirstLetter = (string) => {
+function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-const crearFila = (operacion, indice) => {
-
+function crearFila(operacion, indice){
     let fila = document.createElement('tr');
     fila.style.width = '100%';
     fila.style.height = '8vh';
-    fila.classList.add('odd:bg-slate-900');
-    fila.classList.add('even:bg-sky-950');
-    fila.classList.add('hover:bg-indigo-950');
-
+    fila.classList.add("odd:bg-slate-900");
+    fila.classList.add("even:bg-sky-950");
+    fila.classList.add("hover:bg-indigo-950");
     let columnaDescripcion = document.createElement('td');
     columnaDescripcion.textContent = capitalizeFirstLetter(operacion.descripcion);
     columnaDescripcion.style.textAlign = 'center';
     fila.appendChild(columnaDescripcion);
-
     let columnaCategoria = document.createElement('td');
     columnaCategoria.textContent = capitalizeFirstLetter(operacion.categoria);
     columnaCategoria.style.textAlign = 'center';
     fila.appendChild(columnaCategoria);
-
     let columnaFecha = document.createElement('td');
     columnaFecha.textContent = operacion.fecha;
     columnaFecha.style.textAlign = 'center';
     fila.appendChild(columnaFecha);
-
     let columnaMonto = document.createElement('td');
     columnaMonto.style.textAlign = 'center';
-
     if(operacion.tipo == 'gasto'){
         columnaMonto.textContent = '-₽ ' +  operacion.monto;
         columnaMonto.style.color = 'red';
     } else {
         columnaMonto.textContent = '+₽ ' +  operacion.monto;
         columnaMonto.style.color = '#86ec10';
-    };
-
+    }
     fila.appendChild(columnaMonto);
-
     let columnaBotones = document.createElement('td');
     columnaBotones.style.textAlign = 'center';
     columnaBotones.style.display = 'flex';
@@ -127,14 +119,12 @@ const crearFila = (operacion, indice) => {
     columnaBotones.style.flexDirection = 'column';
     columnaBotones.style.height = '8vh';
     fila.appendChild(columnaBotones);
-
     let columnaEditar = document.createElement('button');
     columnaEditar.textContent = 'Издать';
     columnaEditar.style.color = '#86ec10';
     columnaBotones.appendChild(columnaEditar);
     columnaEditar.dataset.indice = indice;
     columnaEditar.onclick = editar_operacion;
-
     let columnaEliminar = document.createElement('button');
     columnaEliminar.dataset.indice = indice;
     columnaEliminar.onclick = eliminar_operacion;
@@ -144,7 +134,7 @@ const crearFila = (operacion, indice) => {
     listaNuevaOperacion.appendChild(fila);
 }
 
-const crearTabla = (operaciones) => {
+function crearTabla(operaciones){
     listaNuevaOperacion.innerHTML = '';
     if (operaciones && operaciones.length > 0) {
         imagenIndex.style.display = 'none';
@@ -159,14 +149,13 @@ const crearTabla = (operaciones) => {
         
         operaciones = [];
     };
-
     operaciones.forEach((op, index) => {
         crearFila(op, index);
     });
 };
 
 // Crea cada operacion del form de 'nueva operacion' de balance
-const crearOperacion = () => {
+function crearOperacion() {
     // Objeto con los valores de cada opcion del form de nuevaOperacion
     let nuevaOperacion = {
         descripcion: descripcionNuevaOperacion.value,
@@ -177,21 +166,19 @@ const crearOperacion = () => {
     };
 
     operaciones_array.push(nuevaOperacion);
-    localStorage.setItem('operaciones', JSON.stringify(operaciones_array));
+    localStorage.setItem("operaciones", JSON.stringify(operaciones_array));
     crearTabla(operaciones_array);
     gananciaGasto();
 
     // eliminarOperacionPorCategoria()
 };
 
-const cargarDatos = () =>{
-    operaciones_json = localStorage.getItem('operaciones');
+function cargarDatos(){
+    operaciones_json = localStorage.getItem("operaciones");
     operaciones_array = JSON.parse(operaciones_json);
-
-    if (operaciones_array === null){
+    if (operaciones_array===null){
         operaciones_array=[];
     }
-
     crearTabla(operaciones_array);
     gananciaGasto();
 
@@ -203,9 +190,9 @@ let editarMonto = document.getElementById('editar-monto');
 let editarTipo = document.getElementById('editar-tipo');
 let editarCategoria = document.getElementById('editar-categoria');
 let editarFecha = document.getElementById('editar-fecha');
-let indiceInput = document.getElementById('indice-input');
+let indiceInput = document.getElementById("indice-input");
 
-const editar_operacion = () =>{
+function editar_operacion(){
     seccionEditarOperacion.style.display = 'flex';
     operaciones.style.display = 'none';
     balanceFiltros.style.display = 'none';
@@ -219,24 +206,24 @@ const editar_operacion = () =>{
     editarCategoria.value = operacion.categoria;
     editarFecha.value = operacion.fecha;
 
-    localStorage.setItem('operaciones', JSON.stringify(operaciones_array));
+    localStorage.setItem("operaciones", JSON.stringify(operaciones_array));
     crearTabla(operaciones_array);
     gananciaGasto();
 };
 
-const eliminar_operacion = () =>{
+function eliminar_operacion(){
     indice = this.dataset.indice;
     operaciones_array.splice(indice, 1);
-    localStorage.setItem('operaciones', JSON.stringify(operaciones_array));
+    localStorage.setItem("operaciones", JSON.stringify(operaciones_array));
     crearTabla(operaciones_array);
     gananciaGasto();
 };
 
-const formNuevaOperacion = document.getElementById('form-nueva-operacion');
-const formularioEditar = document.getElementById('formulario-editar');
+const formNuevaOperacion = document.getElementById("form-nueva-operacion");
+const formularioEditar = document.getElementById("formulario-editar");
 let listaNuevaOperacion = document.getElementById('lista-nueva-operacion');
 
-formNuevaOperacion.addEventListener('submit', function (event) {
+formNuevaOperacion.addEventListener("submit", function (event) {
     console.log(event);
     event.preventDefault();
     event.stopImmediatePropagation();
@@ -247,13 +234,13 @@ formNuevaOperacion.addEventListener('submit', function (event) {
     balanceFiltros.style.display = 'flex';
 });
 
-cancelarOperacion.addEventListener('click', ()=> {
+cancelarOperacion.addEventListener('click', ()=>{
     ventanaNuevaOperacion.style.display = 'none';
     operaciones.style.display = 'flex';
     balanceFiltros.style.display = 'flex';
 });
 
-formularioEditar.addEventListener('submit', function (event) {
+formularioEditar.addEventListener("submit", function (event) {
     console.log(event);
     event.preventDefault();
     event.stopImmediatePropagation();
@@ -268,7 +255,7 @@ formularioEditar.addEventListener('submit', function (event) {
     operacion.categoria = editarCategoria.value;
     operacion.fecha = editarFecha.value;
 
-    localStorage.setItem('operaciones', JSON.stringify(operaciones_array));
+    localStorage.setItem("operaciones", JSON.stringify(operaciones_array));
     crearTabla(operaciones_array);
     gananciaGasto();
 
@@ -295,7 +282,7 @@ const filtroDesde = document.getElementById('desde');
 const filtroOrdenarPor = document.getElementById('ordenar-por');
 
 //Filtro por tipo, categoría y fecha
-const filtrarOperaciones = () => {
+function filtrarOperaciones() {
     const tipo = filtroTipo.value;
     const categoria = filtroCategoria.value;
     const desde = filtroDesde.value;
@@ -344,17 +331,17 @@ filtroDesde.addEventListener('change', filtrarOperaciones);
 filtroOrdenarPor.addEventListener('change', filtrarOperaciones);
 
 // Funcion Balance - ganancias y gastos
-const gananciaGasto = () => {
+function gananciaGasto(){
     let balanceGanancias = document.getElementById('balance-ganancias');
     let balanceGastos = document.getElementById('balance-gastos');
     let balanceTotalGananciasGastos = document.getElementById('balance-total-ganancias-gastos');
 
-    let arrayGanancia = operaciones_array.filter((op)=>op.tipo == 'ganancia');
+    let arrayGanancia = operaciones_array.filter((op)=>op.tipo == "ganancia");
     let sumaGanancia = arrayGanancia.reduce((a, b) => parseFloat(a) + parseFloat(b.monto), 0);
     balanceGanancias.textContent = '+₽ '+ sumaGanancia;
     balanceGanancias.style.color = '#86ec10';
 
-    let arrayGastos = operaciones_array.filter((op)=>op.tipo == 'gasto');
+    let arrayGastos = operaciones_array.filter((op)=>op.tipo == "gasto");
     let sumaGastos = arrayGastos.reduce((a, b) => parseFloat(a) + parseFloat(b.monto), 0);
     balanceGastos.textContent = '-₽ '+ sumaGastos;
     balanceGastos.style.color = 'red';
